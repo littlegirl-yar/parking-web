@@ -1,0 +1,669 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/127.0.0.1"
+        }
+    ],
+    "info": {
+        "name": "Laravel",
+        "_postman_id": "d44621c2-4961-4694-8faa-d846eb209226",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Authenticating",
+            "description": "",
+            "item": [
+                {
+                    "name": "Register a user",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/auth\/register",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/auth\/register"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"yaromiradmin@gmail.com\",\"email\":\"yaromiradmin@gmail.com\",\"password\":\"yaromir228322\",\"password_confirmation\":\"yaromir228322\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\"Registered successfully\"}",
+                            "name": "success"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"message\": \"The given data was invalid.\",\n\"errors\": {\n\"email\": [\n\"The email has already been taken.\"\n]\n}}",
+                            "name": "validation error"
+                        }
+                    ]
+                },
+                {
+                    "name": "Get me.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/me",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/me"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "This endpoint returns information of current authenticated user."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"data\": {\n\"name\": \"Yaromir\",\n\"email\": \"yaromiradmin@gmail.com\"\n}\n}",
+                            "name": "success"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\": \"Unauthenticated.\"}",
+                            "name": "unauthorized"
+                        }
+                    ]
+                },
+                {
+                    "name": "Get a token.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/auth\/token",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/auth\/token"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"yaromiradmin@gmail.com\",\"password\":\"yaromir228322\"}"
+                        },
+                        "description": "This endpoint is needed to authenticate user (Laravel Sanctum).",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"access_token\": \"51|G6uNN3kQmAiTcbQOOz47XjEBCFKJ61nPYzjwdOoC\",\"token_type\": \"Bearer\"}",
+                            "name": "success"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n\"message\": \"The given data was invalid.\",\n\"errors\": {\n\"email\": [\n\"The email field is required.\"]}}",
+                            "name": "validation error"
+                        }
+                    ]
+                },
+                {
+                    "name": "Log out a user.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/auth\/logout",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/auth\/logout"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"Logged out\"}",
+                            "name": "success"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\": \"Unauthenticated.\"}",
+                            "name": "unauthorized"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Garage management",
+            "description": "",
+            "item": [
+                {
+                    "name": "Get garages.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/garages",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/garages"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"data\": [\n{\n\"id\": 1,\n\"name\": \"Dr. Theron McKenzie\",\n\"zipcode\": \"75441-6220\",\n\"coordinates\": {\n\"lng\": 26.57,\n\"lat\": 44.64\n},\n\"total_spots\": 12,\n\"free_spots\": 8\n},\n{\n\"id\": 2,\n\"name\": \"Joannie Hudson IV\",\n\"zipcode\": \"52370\",\n\"coordinates\": {\n\"lng\": 23.67,\n\"lat\": 44.24\n},\n\"total_spots\": 24,\n\"free_spots\": 19\n}\n]\n}",
+                            "name": "success"
+                        }
+                    ]
+                },
+                {
+                    "name": "Get garage by id.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/garages\/:garage",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/garages\/:garage",
+                            "variable": [
+                                {
+                                    "id": "garage",
+                                    "key": "garage",
+                                    "value": "1",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "59"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":1,\"name\":\"Dr. Theron McKenzie\",\"zipcode\":\"75441-6220\",\"sizes\":[{\"name\":\"small\",\"price\":500,\"rates\":null},{\"name\":\"medium\",\"price\":600,\"rates\":[{\"amount\":2000,\"hours\":\"11-13\",\"days\":[1]}]},{\"name\":\"large\",\"price\":700,\"rates\":null}],\"attributes\":{\"electric\":66,\"for_women\":24,\"handicapped\":55,\"with_kids\":93}}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Get spots.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/garages\/:garage\/spots",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/garages\/:garage\/spots",
+                            "variable": [
+                                {
+                                    "id": "garage",
+                                    "key": "garage",
+                                    "value": "1",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"datetime_range\":{\"start\":\"2107-09-02\",\"end\":\"2041-03-11\"},\"size\":\"small\",\"attributes\":[\"handicapped\"]}"
+                        },
+                        "description": "This endpoint returns list of spots for a specific garage. The result can also be filtered with additional body parameters.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "58"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":4,\"size\":\"small\",\"floor\":3,\"number\":50,\"attributes\":[\"handicapped\"]},{\"id\":5,\"size\":\"small\",\"floor\":2,\"number\":94,\"attributes\":[\"for_women\",\"handicapped\"]},{\"id\":9,\"size\":\"small\",\"floor\":-14,\"number\":40,\"attributes\":[\"electric\",\"for_women\",\"handicapped\"]},{\"id\":11,\"size\":\"small\",\"floor\":1,\"number\":130,\"attributes\":[\"for_women\",\"handicapped\",\"with_kids\"]}]}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Reservation Management",
+            "description": "",
+            "item": [
+                {
+                    "name": "Get reservation by uuid.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/reservations\/:reservation_uuid",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/reservations\/:reservation_uuid",
+                            "variable": [
+                                {
+                                    "id": "reservation_uuid",
+                                    "key": "reservation_uuid",
+                                    "value": "14",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"data\": {\n\"id\": 293,\n\"spot_id\": \"18\",\n\"start\": \"2022-04-07 08:30:00\",\n\"end\": \"2022-04-08 00:30:00\",\n\"paid_at\": \"2022-04-07 06:38:33\",\n\"paid_amount\": 11280,\n\"created_at\": \"2022-04-07 06:37:47\"\n}\n}",
+                            "name": "success"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\": \"Unauthenticated.\"}",
+                            "name": "unauthorized"
+                        }
+                    ]
+                },
+                {
+                    "name": "Calculate payment.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/calculate-payment",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/calculate-payment"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"reservation_id\":\"345\"}"
+                        },
+                        "description": "This endpoint returns price in cents for reservation."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{21475}",
+                            "name": "success"
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\": \"This action is unauthorized.\"}",
+                            "name": "Forbidden"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\": \"Unauthenticated.\"}",
+                            "name": "unauthorized"
+                        }
+                    ]
+                },
+                {
+                    "name": "Make reservation.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/reservations",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/reservations"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"start\":\"2022-12-15 00:35:00\",\"end\":\"2022-12-15 01:50:00\",\"spot_id\":\"11\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"data\": {\n\"id\": 345,\n\"spot_id\": \"14\",\n\"start\": \"2022-04-17 00:00:00\",\n\"end\": \"2022-04-18 00:00:00\",\n\"paid_at\": null,\n\"paid_amount\": null,\n\"created_at\": \"2022-04-10 16:49:02\"\n}\n}",
+                            "name": "success"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n\"message\": \"The given data was invalid.\",\n\"errors\": {\n\"range\": [\n\"A reservation for this spot with this period is not valid.\"\n]\n}\n}",
+                            "name": "validation error"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\": \"Unauthenticated.\"}",
+                            "name": "unauthorized"
+                        }
+                    ]
+                },
+                {
+                    "name": "Checkout.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/checkout\/:reservation",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/checkout\/:reservation",
+                            "variable": [
+                                {
+                                    "id": "reservation",
+                                    "key": "reservation",
+                                    "value": "1",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "This endpoint returns url of Stripe checkout form."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"url\": \"https:\/\/checkout.stripe.com\/pay\/cs_test_a1bdYTCzfUUKKGRdO2vggm2jtpnyZmjuPEsvBsJTyqyJO4MtSkmq2A2Uoz#fidkdWxOYHwnPyd1blpxYHZxWjA0TmNiU2dNbWRKfU5McnFIaTNpM0ZLZGBcREhMT11xMExgdkt3a1Zpa0RqZmBqaUBHaUlQdGBQNUFTfGxqVUBiYmdXVklXXWBWblRiZk5nXGFcSFxoS3Y2NTVXMW9jd0E3aScpJ2N3amhWYHdzYHcnP3F3cGApJ2lkfGpwcVF8dWAnPyd2bGtiaWBabHFgaCcpJ2BrZGdpYFVpZGZgbWppYWB3dic%2FcXdwYHgl\"}",
+                            "name": "success"
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\": \"This action is unauthorized.\"}",
+                            "name": "Forbidden"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\": \"Unauthenticated.\"}",
+                            "name": "unauthorized"
+                        }
+                    ]
+                },
+                {
+                    "name": "Update reservation.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/reservations\/:reservation",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/reservations\/:reservation",
+                            "variable": [
+                                {
+                                    "id": "reservation",
+                                    "key": "reservation",
+                                    "value": "1",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"start\":\"2022-12-15 00:35:00\",\"end\":\"2022-12-15 01:50:00\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"data\": {\n\"id\": 345,\n\"spot_id\": \"14\",\n\"start\": \"2022-05-21 00:00:00\",\n\"end\": \"2022-05-22 00:00:00\",\n\"paid_at\": null,\n\"paid_amount\": null,\n\"created_at\": \"2022-04-10 16:49:02\"\n}\n}",
+                            "name": "success"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n\"message\": \"The given data was invalid.\",\n\"errors\": {\n\"end\": [\n\"The end field is required.\"\n]\n}\n}",
+                            "name": "validation error"
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\": \"This action is unauthorized.\"}",
+                            "name": "Forbidden"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\": \"Unauthenticated.\"}",
+                            "name": "unauthorized"
+                        }
+                    ]
+                },
+                {
+                    "name": "Delete reservation.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/reservations\/:reservation",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/reservations\/:reservation",
+                            "variable": [
+                                {
+                                    "id": "reservation",
+                                    "key": "reservation",
+                                    "value": "1",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\": \"This action is unauthorized.\"}",
+                            "name": "Forbidden"
+                        },
+                        {
+                            "header": [],
+                            "code": 204,
+                            "body": "success",
+                            "name": "no content"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "noauth"
+    }
+}

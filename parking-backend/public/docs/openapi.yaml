@@ -1,0 +1,1042 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://127.0.0.1'
+paths:
+  /api/auth/register:
+    post:
+      summary: 'Register a user'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        201:
+          description: success
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: '{"Registered successfully"}'
+        422:
+          description: 'validation error'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'The given data was invalid.'
+                  errors:
+                    email:
+                      - 'The email has already been taken.'
+                properties:
+                  message:
+                    type: string
+                    example: 'The given data was invalid.'
+                  errors:
+                    type: object
+                    example:
+                      email:
+                        - 'The email has already been taken.'
+      tags:
+        - Authenticating
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'User name. Must not be greater than 255 characters.'
+                  example: yaromiradmin@gmail.com
+                email:
+                  type: string
+                  description: 'User email. Must be a valid email address. Must not be greater than 255 characters.'
+                  example: yaromiradmin@gmail.com
+                password:
+                  type: string
+                  description: 'User password.'
+                  example: yaromir228322
+                password_confirmation:
+                  type: string
+                  description: 'Password confirmation.'
+                  example: yaromir228322
+              required:
+                - name
+                - email
+                - password
+                - password_confirmation
+      security: []
+  /api/me:
+    get:
+      summary: 'Get me.'
+      description: 'This endpoint returns information of current authenticated user.'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    name: Yaromir
+                    email: yaromiradmin@gmail.com
+                properties:
+                  data:
+                    type: object
+                    example:
+                      name: Yaromir
+                      email: yaromiradmin@gmail.com
+        401:
+          description: unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Authenticating
+  /api/auth/token:
+    post:
+      summary: 'Get a token.'
+      description: 'This endpoint is needed to authenticate user (Laravel Sanctum).'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  access_token: 51|G6uNN3kQmAiTcbQOOz47XjEBCFKJ61nPYzjwdOoC
+                  token_type: Bearer
+                properties:
+                  access_token:
+                    type: string
+                    example: 51|G6uNN3kQmAiTcbQOOz47XjEBCFKJ61nPYzjwdOoC
+                  token_type:
+                    type: string
+                    example: Bearer
+        422:
+          description: 'validation error'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'The given data was invalid.'
+                  errors:
+                    email:
+                      - 'The email field is required.'
+                properties:
+                  message:
+                    type: string
+                    example: 'The given data was invalid.'
+                  errors:
+                    type: object
+                    example:
+                      email:
+                        - 'The email field is required.'
+      tags:
+        - Authenticating
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'User email. Must be a valid email address. Must not be greater than 255 characters.'
+                  example: yaromiradmin@gmail.com
+                password:
+                  type: string
+                  description: 'User password. Must not be greater than 255 characters.'
+                  example: yaromir228322
+              required:
+                - email
+                - password
+      security: []
+  /api/auth/logout:
+    post:
+      summary: 'Log out a user.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: success
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: '{"Logged out"}'
+        401:
+          description: unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Authenticating
+  /api/garages:
+    get:
+      summary: 'Get garages.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 1
+                      name: 'Dr. Theron McKenzie'
+                      zipcode: 75441-6220
+                      coordinates:
+                        lng: 26.57
+                        lat: 44.64
+                      total_spots: 12
+                      free_spots: 8
+                    -
+                      id: 2
+                      name: 'Joannie Hudson IV'
+                      zipcode: '52370'
+                      coordinates:
+                        lng: 23.67
+                        lat: 44.24
+                      total_spots: 24
+                      free_spots: 19
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        name: 'Dr. Theron McKenzie'
+                        zipcode: 75441-6220
+                        coordinates:
+                          lng: 26.57
+                          lat: 44.64
+                        total_spots: 12
+                        free_spots: 8
+                      -
+                        id: 2
+                        name: 'Joannie Hudson IV'
+                        zipcode: '52370'
+                        coordinates:
+                          lng: 23.67
+                          lat: 44.24
+                        total_spots: 24
+                        free_spots: 19
+                    items:
+                      type: object
+      tags:
+        - 'Garage management'
+      security: []
+  '/api/garages/{garage}':
+    get:
+      summary: 'Get garage by id.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    name: 'Dr. Theron McKenzie'
+                    zipcode: 75441-6220
+                    sizes:
+                      -
+                        name: small
+                        price: 500
+                        rates: null
+                      -
+                        name: medium
+                        price: 600
+                        rates:
+                          -
+                            amount: 2000
+                            hours: 11-13
+                            days:
+                              - 1
+                      -
+                        name: large
+                        price: 700
+                        rates: null
+                    attributes:
+                      electric: 66
+                      for_women: 24
+                      handicapped: 55
+                      with_kids: 93
+                properties:
+                  data:
+                    type: object
+                    example:
+                      id: 1
+                      name: 'Dr. Theron McKenzie'
+                      zipcode: 75441-6220
+                      sizes:
+                        -
+                          name: small
+                          price: 500
+                          rates: null
+                        -
+                          name: medium
+                          price: 600
+                          rates:
+                            -
+                              amount: 2000
+                              hours: 11-13
+                              days:
+                                - 1
+                        -
+                          name: large
+                          price: 700
+                          rates: null
+                      attributes:
+                        electric: 66
+                        for_women: 24
+                        handicapped: 55
+                        with_kids: 93
+      tags:
+        - 'Garage management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: garage
+        description: ''
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/garages/{garage}/spots':
+    get:
+      summary: 'Get spots.'
+      description: 'This endpoint returns list of spots for a specific garage. The result can also be filtered with additional body parameters.'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 4
+                      size: small
+                      floor: 3
+                      number: 50
+                      attributes:
+                        - handicapped
+                    -
+                      id: 5
+                      size: small
+                      floor: 2
+                      number: 94
+                      attributes:
+                        - for_women
+                        - handicapped
+                    -
+                      id: 9
+                      size: small
+                      floor: -14
+                      number: 40
+                      attributes:
+                        - electric
+                        - for_women
+                        - handicapped
+                    -
+                      id: 11
+                      size: small
+                      floor: 1
+                      number: 130
+                      attributes:
+                        - for_women
+                        - handicapped
+                        - with_kids
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 4
+                        size: small
+                        floor: 3
+                        number: 50
+                        attributes:
+                          - handicapped
+                      -
+                        id: 5
+                        size: small
+                        floor: 2
+                        number: 94
+                        attributes:
+                          - for_women
+                          - handicapped
+                      -
+                        id: 9
+                        size: small
+                        floor: -14
+                        number: 40
+                        attributes:
+                          - electric
+                          - for_women
+                          - handicapped
+                      -
+                        id: 11
+                        size: small
+                        floor: 1
+                        number: 130
+                        attributes:
+                          - for_women
+                          - handicapped
+                          - with_kids
+                    items:
+                      type: object
+      tags:
+        - 'Garage management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                datetime_range:
+                  type: object
+                  description: ''
+                  example: []
+                  properties:
+                    start:
+                      type: string
+                      description: 'Must be a valid date. Must be a date after or equal to <code>now</code>.'
+                      example: '2107-09-02'
+                    end:
+                      type: string
+                      description: 'Must be a valid date. Must be a date after <code>start</code>.'
+                      example: '2041-03-11'
+                size:
+                  type: string
+                  description: 'Spot size. Must be one of <code>small</code>, <code>medium</code>, or <code>large</code>.'
+                  example: small
+                attributes:
+                  type: array
+                  description: 'Must be one of <code>electric</code>, <code>for_women</code>, <code>handicapped</code>, or <code>with_kids</code>.'
+                  example:
+                    - handicapped
+                  items:
+                    type: string
+              required:
+                - attributes
+      security: []
+    parameters:
+      -
+        in: path
+        name: garage
+        description: ''
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/reservations/{reservation_uuid}':
+    get:
+      summary: 'Get reservation by uuid.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 293
+                    spot_id: '18'
+                    start: '2022-04-07 08:30:00'
+                    end: '2022-04-08 00:30:00'
+                    paid_at: '2022-04-07 06:38:33'
+                    paid_amount: 11280
+                    created_at: '2022-04-07 06:37:47'
+                properties:
+                  data:
+                    type: object
+                    example:
+                      id: 293
+                      spot_id: '18'
+                      start: '2022-04-07 08:30:00'
+                      end: '2022-04-08 00:30:00'
+                      paid_at: '2022-04-07 06:38:33'
+                      paid_amount: 11280
+                      created_at: '2022-04-07 06:37:47'
+        401:
+          description: unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Reservation Management'
+    parameters:
+      -
+        in: path
+        name: reservation_uuid
+        description: ''
+        example: 14
+        required: true
+        schema:
+          type: integer
+  /api/calculate-payment:
+    post:
+      summary: 'Calculate payment.'
+      description: 'This endpoint returns price in cents for reservation.'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: success
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: '{21475}'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'This action is unauthorized.'
+                properties:
+                  message:
+                    type: string
+                    example: 'This action is unauthorized.'
+        401:
+          description: unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Reservation Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reservation_id:
+                  type: string
+                  description: 'The id of a reservation.'
+                  example: '345'
+              required:
+                - reservation_id
+  /api/reservations:
+    post:
+      summary: 'Make reservation.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 345
+                    spot_id: '14'
+                    start: '2022-04-17 00:00:00'
+                    end: '2022-04-18 00:00:00'
+                    paid_at: null
+                    paid_amount: null
+                    created_at: '2022-04-10 16:49:02'
+                properties:
+                  data:
+                    type: object
+                    example:
+                      id: 345
+                      spot_id: '14'
+                      start: '2022-04-17 00:00:00'
+                      end: '2022-04-18 00:00:00'
+                      paid_at: null
+                      paid_amount: null
+                      created_at: '2022-04-10 16:49:02'
+        422:
+          description: 'validation error'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'The given data was invalid.'
+                  errors:
+                    range:
+                      - 'A reservation for this spot with this period is not valid.'
+                properties:
+                  message:
+                    type: string
+                    example: 'The given data was invalid.'
+                  errors:
+                    type: object
+                    example:
+                      range:
+                        - 'A reservation for this spot with this period is not valid.'
+        401:
+          description: unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Reservation Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start:
+                  type: string
+                  description: 'Start date for spot reservation. Must be a valid date. Must be a date after or equal to <code>now</code>.'
+                  example: '2022-12-15 00:35:00'
+                end:
+                  type: string
+                  description: 'End date for spot reservation. Must be a valid date. Must be a date after <code>start</code>.'
+                  example: '2022-12-15 01:50:00'
+                spot_id:
+                  type: string
+                  description: 'The id of the spot.'
+                  example: '11'
+                range:
+                  type: string
+                  description: 'Validation rule.'
+                  example: null
+              required:
+                - start
+                - end
+                - spot_id
+  '/api/checkout/{reservation}':
+    get:
+      summary: Checkout.
+      description: 'This endpoint returns url of Stripe checkout form.'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  url: 'https://checkout.stripe.com/pay/cs_test_a1bdYTCzfUUKKGRdO2vggm2jtpnyZmjuPEsvBsJTyqyJO4MtSkmq2A2Uoz#fidkdWxOYHwnPyd1blpxYHZxWjA0TmNiU2dNbWRKfU5McnFIaTNpM0ZLZGBcREhMT11xMExgdkt3a1Zpa0RqZmBqaUBHaUlQdGBQNUFTfGxqVUBiYmdXVklXXWBWblRiZk5nXGFcSFxoS3Y2NTVXMW9jd0E3aScpJ2N3amhWYHdzYHcnP3F3cGApJ2lkfGpwcVF8dWAnPyd2bGtiaWBabHFgaCcpJ2BrZGdpYFVpZGZgbWppYWB3dic%2FcXdwYHgl'
+                properties:
+                  url:
+                    type: string
+                    example: 'https://checkout.stripe.com/pay/cs_test_a1bdYTCzfUUKKGRdO2vggm2jtpnyZmjuPEsvBsJTyqyJO4MtSkmq2A2Uoz#fidkdWxOYHwnPyd1blpxYHZxWjA0TmNiU2dNbWRKfU5McnFIaTNpM0ZLZGBcREhMT11xMExgdkt3a1Zpa0RqZmBqaUBHaUlQdGBQNUFTfGxqVUBiYmdXVklXXWBWblRiZk5nXGFcSFxoS3Y2NTVXMW9jd0E3aScpJ2N3amhWYHdzYHcnP3F3cGApJ2lkfGpwcVF8dWAnPyd2bGtiaWBabHFgaCcpJ2BrZGdpYFVpZGZgbWppYWB3dic%2FcXdwYHgl'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'This action is unauthorized.'
+                properties:
+                  message:
+                    type: string
+                    example: 'This action is unauthorized.'
+        401:
+          description: unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Reservation Management'
+    parameters:
+      -
+        in: path
+        name: reservation
+        description: ''
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/reservations/{reservation}':
+    patch:
+      summary: 'Update reservation.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 345
+                    spot_id: '14'
+                    start: '2022-05-21 00:00:00'
+                    end: '2022-05-22 00:00:00'
+                    paid_at: null
+                    paid_amount: null
+                    created_at: '2022-04-10 16:49:02'
+                properties:
+                  data:
+                    type: object
+                    example:
+                      id: 345
+                      spot_id: '14'
+                      start: '2022-05-21 00:00:00'
+                      end: '2022-05-22 00:00:00'
+                      paid_at: null
+                      paid_amount: null
+                      created_at: '2022-04-10 16:49:02'
+        422:
+          description: 'validation error'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'The given data was invalid.'
+                  errors:
+                    end:
+                      - 'The end field is required.'
+                properties:
+                  message:
+                    type: string
+                    example: 'The given data was invalid.'
+                  errors:
+                    type: object
+                    example:
+                      end:
+                        - 'The end field is required.'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'This action is unauthorized.'
+                properties:
+                  message:
+                    type: string
+                    example: 'This action is unauthorized.'
+        401:
+          description: unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Reservation Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start:
+                  type: string
+                  description: 'Start date for spot reservation. Must be a valid date. Must be a date after or equal to <code>now</code>.'
+                  example: '2022-12-15 00:35:00'
+                end:
+                  type: string
+                  description: 'End date for spot reservation. Must be a valid date. Must be a date after <code>start</code>.'
+                  example: '2022-12-15 01:50:00'
+              required:
+                - start
+                - end
+    delete:
+      summary: 'Delete reservation.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'This action is unauthorized.'
+                properties:
+                  message:
+                    type: string
+                    example: 'This action is unauthorized.'
+        204:
+          description: 'no content'
+      tags:
+        - 'Reservation Management'
+    parameters:
+      -
+        in: path
+        name: reservation
+        description: ''
+        example: 1
+        required: true
+        schema:
+          type: integer
+tags:
+  -
+    name: Authenticating
+    description: ''
+  -
+    name: 'Garage management'
+    description: ''
+  -
+    name: 'Reservation Management'
+    description: ''

@@ -1,0 +1,1673 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Laravel Documentation</title>
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../docs/css/theme-default.style.css" media="screen">
+    <link rel="stylesheet" href="../docs/css/theme-default.print.css" media="print">
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/@highlightjs/cdn-assets@10.7.2/styles/obsidian.min.css">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@10.7.2/highlight.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jets/0.14.1/jets.min.js"></script>
+
+    <style id="language-style">
+        /* starts out as display none and is replaced with js later  */
+                    body .content .php-example code { display: none; }
+            </style>
+
+
+    <script src="../docs/js/theme-default-3.26.0.js"></script>
+
+</head>
+
+<body data-languages="[&quot;php&quot;]">
+
+<a href="#" id="nav-button">
+    <span>
+        MENU
+        <img src="../docs/images/navbar.png" alt="navbar-image" />
+    </span>
+</a>
+<div class="tocify-wrapper">
+    
+            <div class="lang-selector">
+                                            <button type="button" class="lang-button" data-language-name="php">php</button>
+                    </div>
+    
+    <div class="search">
+        <input type="text" class="search" id="input-search" placeholder="Search">
+    </div>
+
+    <div id="toc">
+                                                                            <ul id="tocify-header-0" class="tocify-header">
+                    <li class="tocify-item level-1" data-unique="introduction">
+                        <a href="#introduction">Introduction</a>
+                    </li>
+                                            
+                                                                    </ul>
+                                                <ul id="tocify-header-1" class="tocify-header">
+                    <li class="tocify-item level-1" data-unique="authenticating-requests">
+                        <a href="#authenticating-requests">Authenticating requests</a>
+                    </li>
+                                            
+                                                </ul>
+                    
+                    <ul id="tocify-header-2" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="authenticating">
+                    <a href="#authenticating">Authenticating</a>
+                </li>
+                                    <ul id="tocify-subheader-authenticating" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="authenticating-POSTapi-auth-register">
+                        <a href="#authenticating-POSTapi-auth-register">Register a user</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="authenticating-GETapi-me">
+                        <a href="#authenticating-GETapi-me">Get me.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="authenticating-POSTapi-auth-token">
+                        <a href="#authenticating-POSTapi-auth-token">Get a token.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="authenticating-POSTapi-auth-logout">
+                        <a href="#authenticating-POSTapi-auth-logout">Log out a user.</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-3" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="garage-management">
+                    <a href="#garage-management">Garage management</a>
+                </li>
+                                    <ul id="tocify-subheader-garage-management" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="garage-management-GETapi-garages">
+                        <a href="#garage-management-GETapi-garages">Get garages.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="garage-management-GETapi-garages--garage-">
+                        <a href="#garage-management-GETapi-garages--garage-">Get garage by id.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="garage-management-GETapi-garages--garage--spots">
+                        <a href="#garage-management-GETapi-garages--garage--spots">Get spots.</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-4" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="reservation-management">
+                    <a href="#reservation-management">Reservation Management</a>
+                </li>
+                                    <ul id="tocify-subheader-reservation-management" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="reservation-management-GETapi-reservations--reservation_uuid-">
+                        <a href="#reservation-management-GETapi-reservations--reservation_uuid-">Get reservation by uuid.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="reservation-management-POSTapi-calculate-payment">
+                        <a href="#reservation-management-POSTapi-calculate-payment">Calculate payment.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="reservation-management-POSTapi-reservations">
+                        <a href="#reservation-management-POSTapi-reservations">Make reservation.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="reservation-management-GETapi-checkout--reservation-">
+                        <a href="#reservation-management-GETapi-checkout--reservation-">Checkout.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="reservation-management-PATCHapi-reservations--reservation-">
+                        <a href="#reservation-management-PATCHapi-reservations--reservation-">Update reservation.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="reservation-management-DELETEapi-reservations--reservation-">
+                        <a href="#reservation-management-DELETEapi-reservations--reservation-">Delete reservation.</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+        
+                        
+            </div>
+
+            <ul class="toc-footer" id="toc-footer">
+                            <li><a href="../docs/collection.json">View Postman collection</a></li>
+                            <li><a href="../docs/openapi.yaml">View OpenAPI spec</a></li>
+                            <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
+                    </ul>
+        <ul class="toc-footer" id="last-updated">
+        <li>Last updated: April 11 2022</li>
+    </ul>
+</div>
+
+<div class="page-wrapper">
+    <div class="dark-box"></div>
+    <div class="content">
+        <h1 id="introduction">Introduction</h1>
+<p>This documentation aims to provide all the information you need to work with our API.</p>
+<aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
+You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
+<blockquote>
+<p>Base URL</p>
+</blockquote>
+<pre><code class="language-yaml">http://127.0.0.1</code></pre>
+
+        <h1 id="authenticating-requests">Authenticating requests</h1>
+<p>This API is not authenticated.</p>
+
+        <h1 id="authenticating">Authenticating</h1>
+
+    
+
+            <h2 id="authenticating-POSTapi-auth-register">Register a user</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-auth-register">
+<blockquote>Example request:</blockquote>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://127.0.0.1/api/auth/register',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'name' =&gt; 'yaromiradmin@gmail.com',
+            'email' =&gt; 'yaromiradmin@gmail.com',
+            'password' =&gt; 'yaromir228322',
+            'password_confirmation' =&gt; 'yaromir228322',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-auth-register">
+            <blockquote>
+            <p>Example response (201, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{&quot;Registered successfully&quot;}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;The given data was invalid.&quot;,
+    &quot;errors&quot;: {
+        &quot;email&quot;: [
+            &quot;The email has already been taken.&quot;
+        ]
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-auth-register" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-auth-register"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-auth-register"></code></pre>
+</span>
+<span id="execution-error-POSTapi-auth-register" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-auth-register"></code></pre>
+</span>
+<form id="form-POSTapi-auth-register" data-method="POST"
+      data-path="api/auth/register"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-auth-register', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/auth/register</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="name"
+               data-endpoint="POSTapi-auth-register"
+               value="yaromiradmin@gmail.com"
+               data-component="body" hidden>
+    <br>
+<p>User name. Must not be greater than 255 characters.</p>
+        </p>
+                <p>
+            <b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="email"
+               data-endpoint="POSTapi-auth-register"
+               value="yaromiradmin@gmail.com"
+               data-component="body" hidden>
+    <br>
+<p>User email. Must be a valid email address. Must not be greater than 255 characters.</p>
+        </p>
+                <p>
+            <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="password"
+               data-endpoint="POSTapi-auth-register"
+               value="yaromir228322"
+               data-component="body" hidden>
+    <br>
+<p>User password.</p>
+        </p>
+                <p>
+            <b><code>password_confirmation</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="password_confirmation"
+               data-endpoint="POSTapi-auth-register"
+               value="yaromir228322"
+               data-component="body" hidden>
+    <br>
+<p>Password confirmation.</p>
+        </p>
+        </form>
+
+            <h2 id="authenticating-GETapi-me">Get me.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>This endpoint returns information of current authenticated user.</p>
+
+<span id="example-requests-GETapi-me">
+<blockquote>Example request:</blockquote>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://127.0.0.1/api/me',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-me">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {
+        &quot;name&quot;: &quot;Yaromir&quot;,
+        &quot;email&quot;: &quot;yaromiradmin@gmail.com&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, unauthorized):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-me" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-me"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-me"></code></pre>
+</span>
+<span id="execution-error-GETapi-me" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-me"></code></pre>
+</span>
+<form id="form-GETapi-me" data-method="GET"
+      data-path="api/me"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-me', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/me</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-me" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-me"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+            <h2 id="authenticating-POSTapi-auth-token">Get a token.</h2>
+
+<p>
+</p>
+
+<p>This endpoint is needed to authenticate user (Laravel Sanctum).</p>
+
+<span id="example-requests-POSTapi-auth-token">
+<blockquote>Example request:</blockquote>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://127.0.0.1/api/auth/token',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'email' =&gt; 'yaromiradmin@gmail.com',
+            'password' =&gt; 'yaromir228322',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-auth-token">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;access_token&quot;: &quot;51|G6uNN3kQmAiTcbQOOz47XjEBCFKJ61nPYzjwdOoC&quot;,
+    &quot;token_type&quot;: &quot;Bearer&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;The given data was invalid.&quot;,
+    &quot;errors&quot;: {
+        &quot;email&quot;: [
+            &quot;The email field is required.&quot;
+        ]
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-auth-token" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-auth-token"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-auth-token"></code></pre>
+</span>
+<span id="execution-error-POSTapi-auth-token" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-auth-token"></code></pre>
+</span>
+<form id="form-POSTapi-auth-token" data-method="POST"
+      data-path="api/auth/token"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-auth-token', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/auth/token</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="email"
+               data-endpoint="POSTapi-auth-token"
+               value="yaromiradmin@gmail.com"
+               data-component="body" hidden>
+    <br>
+<p>User email. Must be a valid email address. Must not be greater than 255 characters.</p>
+        </p>
+                <p>
+            <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="password"
+               data-endpoint="POSTapi-auth-token"
+               value="yaromir228322"
+               data-component="body" hidden>
+    <br>
+<p>User password. Must not be greater than 255 characters.</p>
+        </p>
+        </form>
+
+            <h2 id="authenticating-POSTapi-auth-logout">Log out a user.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-auth-logout">
+<blockquote>Example request:</blockquote>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://127.0.0.1/api/auth/logout',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-auth-logout">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{&quot;Logged out&quot;}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, unauthorized):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-auth-logout" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-auth-logout"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-auth-logout"></code></pre>
+</span>
+<span id="execution-error-POSTapi-auth-logout" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-auth-logout"></code></pre>
+</span>
+<form id="form-POSTapi-auth-logout" data-method="POST"
+      data-path="api/auth/logout"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-auth-logout', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/auth/logout</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-auth-logout" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-auth-logout"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+        <h1 id="garage-management">Garage management</h1>
+
+    
+
+            <h2 id="garage-management-GETapi-garages">Get garages.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-garages">
+<blockquote>Example request:</blockquote>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://127.0.0.1/api/garages',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-garages">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Dr. Theron McKenzie&quot;,
+            &quot;zipcode&quot;: &quot;75441-6220&quot;,
+            &quot;coordinates&quot;: {
+                &quot;lng&quot;: 26.57,
+                &quot;lat&quot;: 44.64
+            },
+            &quot;total_spots&quot;: 12,
+            &quot;free_spots&quot;: 8
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;name&quot;: &quot;Joannie Hudson IV&quot;,
+            &quot;zipcode&quot;: &quot;52370&quot;,
+            &quot;coordinates&quot;: {
+                &quot;lng&quot;: 23.67,
+                &quot;lat&quot;: 44.24
+            },
+            &quot;total_spots&quot;: 24,
+            &quot;free_spots&quot;: 19
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-garages" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-garages"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-garages"></code></pre>
+</span>
+<span id="execution-error-GETapi-garages" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-garages"></code></pre>
+</span>
+<form id="form-GETapi-garages" data-method="GET"
+      data-path="api/garages"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-garages', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/garages</code></b>
+        </p>
+                    </form>
+
+            <h2 id="garage-management-GETapi-garages--garage-">Get garage by id.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-garages--garage-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://127.0.0.1/api/garages/1',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-garages--garage-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 59
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Dr. Theron McKenzie&quot;,
+        &quot;zipcode&quot;: &quot;75441-6220&quot;,
+        &quot;sizes&quot;: [
+            {
+                &quot;name&quot;: &quot;small&quot;,
+                &quot;price&quot;: 500,
+                &quot;rates&quot;: null
+            },
+            {
+                &quot;name&quot;: &quot;medium&quot;,
+                &quot;price&quot;: 600,
+                &quot;rates&quot;: [
+                    {
+                        &quot;amount&quot;: 2000,
+                        &quot;hours&quot;: &quot;11-13&quot;,
+                        &quot;days&quot;: [
+                            1
+                        ]
+                    }
+                ]
+            },
+            {
+                &quot;name&quot;: &quot;large&quot;,
+                &quot;price&quot;: 700,
+                &quot;rates&quot;: null
+            }
+        ],
+        &quot;attributes&quot;: {
+            &quot;electric&quot;: 66,
+            &quot;for_women&quot;: 24,
+            &quot;handicapped&quot;: 55,
+            &quot;with_kids&quot;: 93
+        }
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-garages--garage-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-garages--garage-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-garages--garage-"></code></pre>
+</span>
+<span id="execution-error-GETapi-garages--garage-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-garages--garage-"></code></pre>
+</span>
+<form id="form-GETapi-garages--garage-" data-method="GET"
+      data-path="api/garages/{garage}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-garages--garage-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/garages/{garage}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>garage</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="garage"
+               data-endpoint="GETapi-garages--garage-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    </form>
+
+            <h2 id="garage-management-GETapi-garages--garage--spots">Get spots.</h2>
+
+<p>
+</p>
+
+<p>This endpoint returns list of spots for a specific garage. The result can also be filtered with additional body parameters.</p>
+
+<span id="example-requests-GETapi-garages--garage--spots">
+<blockquote>Example request:</blockquote>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://127.0.0.1/api/garages/1/spots',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'datetime_range' =&gt; [
+                'start' =&gt; '2107-09-02',
+                'end' =&gt; '2041-03-11',
+            ],
+            'size' =&gt; 'small',
+            'attributes' =&gt; [
+                'handicapped',
+            ],
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-garages--garage--spots">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 58
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 4,
+            &quot;size&quot;: &quot;small&quot;,
+            &quot;floor&quot;: 3,
+            &quot;number&quot;: 50,
+            &quot;attributes&quot;: [
+                &quot;handicapped&quot;
+            ]
+        },
+        {
+            &quot;id&quot;: 5,
+            &quot;size&quot;: &quot;small&quot;,
+            &quot;floor&quot;: 2,
+            &quot;number&quot;: 94,
+            &quot;attributes&quot;: [
+                &quot;for_women&quot;,
+                &quot;handicapped&quot;
+            ]
+        },
+        {
+            &quot;id&quot;: 9,
+            &quot;size&quot;: &quot;small&quot;,
+            &quot;floor&quot;: -14,
+            &quot;number&quot;: 40,
+            &quot;attributes&quot;: [
+                &quot;electric&quot;,
+                &quot;for_women&quot;,
+                &quot;handicapped&quot;
+            ]
+        },
+        {
+            &quot;id&quot;: 11,
+            &quot;size&quot;: &quot;small&quot;,
+            &quot;floor&quot;: 1,
+            &quot;number&quot;: 130,
+            &quot;attributes&quot;: [
+                &quot;for_women&quot;,
+                &quot;handicapped&quot;,
+                &quot;with_kids&quot;
+            ]
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-garages--garage--spots" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-garages--garage--spots"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-garages--garage--spots"></code></pre>
+</span>
+<span id="execution-error-GETapi-garages--garage--spots" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-garages--garage--spots"></code></pre>
+</span>
+<form id="form-GETapi-garages--garage--spots" data-method="GET"
+      data-path="api/garages/{garage}/spots"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-garages--garage--spots', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/garages/{garage}/spots</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>garage</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="garage"
+               data-endpoint="GETapi-garages--garage--spots"
+               value="1"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b><code>datetime_range</code></b>&nbsp;&nbsp;<small>object</small>     <i>optional</i> &nbsp;
+<br>
+
+            </summary>
+                                                <p>
+                        <b><code>datetime_range.start</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="datetime_range.start"
+               data-endpoint="GETapi-garages--garage--spots"
+               value="2107-09-02"
+               data-component="body" hidden>
+    <br>
+<p>Must be a valid date. Must be a date after or equal to <code>now</code>.</p>
+                    </p>
+                                                                <p>
+                        <b><code>datetime_range.end</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="datetime_range.end"
+               data-endpoint="GETapi-garages--garage--spots"
+               value="2041-03-11"
+               data-component="body" hidden>
+    <br>
+<p>Must be a valid date. Must be a date after <code>start</code>.</p>
+                    </p>
+                                    </details>
+        </p>
+                <p>
+            <b><code>size</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="size"
+               data-endpoint="GETapi-garages--garage--spots"
+               value="small"
+               data-component="body" hidden>
+    <br>
+<p>Spot size. Must be one of <code>small</code>, <code>medium</code>, or <code>large</code>.</p>
+        </p>
+                <p>
+            <b><code>attributes</code></b>&nbsp;&nbsp;<small>string[]</small>  &nbsp;
+                <input type="text"
+               name="attributes[0]"
+               data-endpoint="GETapi-garages--garage--spots"
+               data-component="body" hidden>
+        <input type="text"
+               name="attributes[1]"
+               data-endpoint="GETapi-garages--garage--spots"
+               data-component="body" hidden>
+    <br>
+<p>Must be one of <code>electric</code>, <code>for_women</code>, <code>handicapped</code>, or <code>with_kids</code>.</p>
+        </p>
+        </form>
+
+        <h1 id="reservation-management">Reservation Management</h1>
+
+    
+
+            <h2 id="reservation-management-GETapi-reservations--reservation_uuid-">Get reservation by uuid.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-reservations--reservation_uuid-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://127.0.0.1/api/reservations/14',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-reservations--reservation_uuid-">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 293,
+        &quot;spot_id&quot;: &quot;18&quot;,
+        &quot;start&quot;: &quot;2022-04-07 08:30:00&quot;,
+        &quot;end&quot;: &quot;2022-04-08 00:30:00&quot;,
+        &quot;paid_at&quot;: &quot;2022-04-07 06:38:33&quot;,
+        &quot;paid_amount&quot;: 11280,
+        &quot;created_at&quot;: &quot;2022-04-07 06:37:47&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, unauthorized):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-reservations--reservation_uuid-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-reservations--reservation_uuid-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-reservations--reservation_uuid-"></code></pre>
+</span>
+<span id="execution-error-GETapi-reservations--reservation_uuid-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-reservations--reservation_uuid-"></code></pre>
+</span>
+<form id="form-GETapi-reservations--reservation_uuid-" data-method="GET"
+      data-path="api/reservations/{reservation_uuid}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-reservations--reservation_uuid-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/reservations/{reservation_uuid}</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-reservations--reservation_uuid-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-reservations--reservation_uuid-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>reservation_uuid</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="reservation_uuid"
+               data-endpoint="GETapi-reservations--reservation_uuid-"
+               value="14"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    </form>
+
+            <h2 id="reservation-management-POSTapi-calculate-payment">Calculate payment.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>This endpoint returns price in cents for reservation.</p>
+
+<span id="example-requests-POSTapi-calculate-payment">
+<blockquote>Example request:</blockquote>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://127.0.0.1/api/calculate-payment',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'reservation_id' =&gt; '345',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-calculate-payment">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{21475}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;This action is unauthorized.&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, unauthorized):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-calculate-payment" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-calculate-payment"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-calculate-payment"></code></pre>
+</span>
+<span id="execution-error-POSTapi-calculate-payment" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-calculate-payment"></code></pre>
+</span>
+<form id="form-POSTapi-calculate-payment" data-method="POST"
+      data-path="api/calculate-payment"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-calculate-payment', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/calculate-payment</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-calculate-payment" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-calculate-payment"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>reservation_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="reservation_id"
+               data-endpoint="POSTapi-calculate-payment"
+               value="345"
+               data-component="body" hidden>
+    <br>
+<p>The id of a reservation.</p>
+        </p>
+        </form>
+
+            <h2 id="reservation-management-POSTapi-reservations">Make reservation.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-reservations">
+<blockquote>Example request:</blockquote>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://127.0.0.1/api/reservations',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'start' =&gt; '2022-12-15 00:35:00',
+            'end' =&gt; '2022-12-15 01:50:00',
+            'spot_id' =&gt; '11',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-reservations">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 345,
+        &quot;spot_id&quot;: &quot;14&quot;,
+        &quot;start&quot;: &quot;2022-04-17 00:00:00&quot;,
+        &quot;end&quot;: &quot;2022-04-18 00:00:00&quot;,
+        &quot;paid_at&quot;: null,
+        &quot;paid_amount&quot;: null,
+        &quot;created_at&quot;: &quot;2022-04-10 16:49:02&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;The given data was invalid.&quot;,
+    &quot;errors&quot;: {
+        &quot;range&quot;: [
+            &quot;A reservation for this spot with this period is not valid.&quot;
+        ]
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, unauthorized):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-reservations" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-reservations"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-reservations"></code></pre>
+</span>
+<span id="execution-error-POSTapi-reservations" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-reservations"></code></pre>
+</span>
+<form id="form-POSTapi-reservations" data-method="POST"
+      data-path="api/reservations"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-reservations', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/reservations</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-reservations" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-reservations"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>start</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="start"
+               data-endpoint="POSTapi-reservations"
+               value="2022-12-15 00:35:00"
+               data-component="body" hidden>
+    <br>
+<p>Start date for spot reservation. Must be a valid date. Must be a date after or equal to <code>now</code>.</p>
+        </p>
+                <p>
+            <b><code>end</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="end"
+               data-endpoint="POSTapi-reservations"
+               value="2022-12-15 01:50:00"
+               data-component="body" hidden>
+    <br>
+<p>End date for spot reservation. Must be a valid date. Must be a date after <code>start</code>.</p>
+        </p>
+                <p>
+            <b><code>spot_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="spot_id"
+               data-endpoint="POSTapi-reservations"
+               value="11"
+               data-component="body" hidden>
+    <br>
+<p>The id of the spot.</p>
+        </p>
+                <p>
+            <b><code>range</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="range"
+               data-endpoint="POSTapi-reservations"
+               value=""
+               data-component="body" hidden>
+    <br>
+<p>Validation rule.</p>
+        </p>
+        </form>
+
+            <h2 id="reservation-management-GETapi-checkout--reservation-">Checkout.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>This endpoint returns url of Stripe checkout form.</p>
+
+<span id="example-requests-GETapi-checkout--reservation-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://127.0.0.1/api/checkout/1',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-checkout--reservation-">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;url&quot;: &quot;https://checkout.stripe.com/pay/cs_test_a1bdYTCzfUUKKGRdO2vggm2jtpnyZmjuPEsvBsJTyqyJO4MtSkmq2A2Uoz#fidkdWxOYHwnPyd1blpxYHZxWjA0TmNiU2dNbWRKfU5McnFIaTNpM0ZLZGBcREhMT11xMExgdkt3a1Zpa0RqZmBqaUBHaUlQdGBQNUFTfGxqVUBiYmdXVklXXWBWblRiZk5nXGFcSFxoS3Y2NTVXMW9jd0E3aScpJ2N3amhWYHdzYHcnP3F3cGApJ2lkfGpwcVF8dWAnPyd2bGtiaWBabHFgaCcpJ2BrZGdpYFVpZGZgbWppYWB3dic%2FcXdwYHgl&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;This action is unauthorized.&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, unauthorized):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-checkout--reservation-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-checkout--reservation-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-checkout--reservation-"></code></pre>
+</span>
+<span id="execution-error-GETapi-checkout--reservation-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-checkout--reservation-"></code></pre>
+</span>
+<form id="form-GETapi-checkout--reservation-" data-method="GET"
+      data-path="api/checkout/{reservation}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-checkout--reservation-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/checkout/{reservation}</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-checkout--reservation-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-checkout--reservation-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>reservation</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="reservation"
+               data-endpoint="GETapi-checkout--reservation-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    </form>
+
+            <h2 id="reservation-management-PATCHapi-reservations--reservation-">Update reservation.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PATCHapi-reservations--reservation-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;patch(
+    'http://127.0.0.1/api/reservations/1',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'start' =&gt; '2022-12-15 00:35:00',
+            'end' =&gt; '2022-12-15 01:50:00',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-PATCHapi-reservations--reservation-">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 345,
+        &quot;spot_id&quot;: &quot;14&quot;,
+        &quot;start&quot;: &quot;2022-05-21 00:00:00&quot;,
+        &quot;end&quot;: &quot;2022-05-22 00:00:00&quot;,
+        &quot;paid_at&quot;: null,
+        &quot;paid_amount&quot;: null,
+        &quot;created_at&quot;: &quot;2022-04-10 16:49:02&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;The given data was invalid.&quot;,
+    &quot;errors&quot;: {
+        &quot;end&quot;: [
+            &quot;The end field is required.&quot;
+        ]
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;This action is unauthorized.&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, unauthorized):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PATCHapi-reservations--reservation-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PATCHapi-reservations--reservation-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PATCHapi-reservations--reservation-"></code></pre>
+</span>
+<span id="execution-error-PATCHapi-reservations--reservation-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PATCHapi-reservations--reservation-"></code></pre>
+</span>
+<form id="form-PATCHapi-reservations--reservation-" data-method="PATCH"
+      data-path="api/reservations/{reservation}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-reservations--reservation-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/reservations/{reservation}</code></b>
+        </p>
+                <p>
+            <label id="auth-PATCHapi-reservations--reservation-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="PATCHapi-reservations--reservation-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>reservation</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="reservation"
+               data-endpoint="PATCHapi-reservations--reservation-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>start</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="start"
+               data-endpoint="PATCHapi-reservations--reservation-"
+               value="2022-12-15 00:35:00"
+               data-component="body" hidden>
+    <br>
+<p>Start date for spot reservation. Must be a valid date. Must be a date after or equal to <code>now</code>.</p>
+        </p>
+                <p>
+            <b><code>end</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="end"
+               data-endpoint="PATCHapi-reservations--reservation-"
+               value="2022-12-15 01:50:00"
+               data-component="body" hidden>
+    <br>
+<p>End date for spot reservation. Must be a valid date. Must be a date after <code>start</code>.</p>
+        </p>
+        </form>
+
+            <h2 id="reservation-management-DELETEapi-reservations--reservation-">Delete reservation.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-reservations--reservation-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;delete(
+    'http://127.0.0.1/api/reservations/1',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-reservations--reservation-">
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;This action is unauthorized.&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (204, no content):</p>
+        </blockquote>
+                <pre>
+<code>[Empty response]</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEapi-reservations--reservation-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-reservations--reservation-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-reservations--reservation-"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-reservations--reservation-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-reservations--reservation-"></code></pre>
+</span>
+<form id="form-DELETEapi-reservations--reservation-" data-method="DELETE"
+      data-path="api/reservations/{reservation}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-reservations--reservation-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/reservations/{reservation}</code></b>
+        </p>
+                <p>
+            <label id="auth-DELETEapi-reservations--reservation-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="DELETEapi-reservations--reservation-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>reservation</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="reservation"
+               data-endpoint="DELETEapi-reservations--reservation-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    </form>
+
+    
+
+        
+    </div>
+    <div class="dark-box">
+                    <div class="lang-selector">
+                                                        <button type="button" class="lang-button" data-language-name="php">php</button>
+                            </div>
+            </div>
+</div>
+</body>
+</html>
